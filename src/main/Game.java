@@ -5,17 +5,13 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowStateListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -23,8 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.plaf.basic.BasicButtonUI;
 
 public class Game implements ActionListener, KeyListener {
 
@@ -68,8 +62,6 @@ public class Game implements ActionListener, KeyListener {
 		initGui();
 
 		while (window != null) { // Game Loop
-
-			System.out.println("Player Position: " + position);
 
 			try {
 				Thread.sleep(100);
@@ -157,7 +149,13 @@ public class Game implements ActionListener, KeyListener {
 
 		main_menuPanel.add(startButton, constraints);
 
+		main_menuPanel.repaint();
+		main_menuPanel.revalidate();
+
 		container.add(main_menuPanel);
+
+		window.setContentPane(container);
+		window.repaint();
 
 	}
 
@@ -256,43 +254,43 @@ public class Game implements ActionListener, KeyListener {
 	private void wald() {
 		position = "Wald";
 		mainTextArea.setText(
-				"Es ist ein sonniger Samstag und\ndu spazierst in einem Wald...\nDu siehst ein Haus...\nMöchtest du es betreten?");
+				"Es ist ein sonniger Samstag und\ndu spazierst in einem Wald...\nDu siehst ein Haus...\nMï¿½chtest du es betreten?");
 		setButtons(ja_nein);
 	}
 
 	private void hausBetreten() {
 		position = "Haus";
 		mainTextArea.setText(
-				"Frank: Willkommen Fremder!\nHättest du gerne ein Schwert?\nDu müsstest auch nur eine\nKleinigkeit für mich erledigen");
+				"Frank: Willkommen Fremder!\nHï¿½ttest du gerne ein Schwert?\nDu mï¿½sstest auch nur eine\nKleinigkeit fï¿½r mich erledigen");
 		resetButtons();
 		setButtons(ja_nein);
 	}
 
 	private void amHausVorbeigehen() {
-		position = "EingangHöhle";
+		position = "EingangHï¿½hle";
 		mainTextArea.setText(
-				"Du gehst am Haus vorbei...\nDabei stößt du auf eine Höhle.\nDu fragst dich was in der Höhle ist und betrittst sie");
+				"Du gehst am Haus vorbei...\nDabei stï¿½ï¿½t du auf eine Hï¿½hle.\nDu fragst dich was in der Hï¿½hle ist und betrittst sie");
 		resetButtons();
 		setButtons(continueDialog);
 	}
 
 	private void hausVerlassen() {
-		position = "EingangHöhle";
-		mainTextArea.setText("Du verlässt das Haus.\nVor dir siehst du eine Höhle.\nDu betrittst sie...");
+		position = "EingangHï¿½hle";
+		mainTextArea.setText("Du verlï¿½sst das Haus.\nVor dir siehst du eine Hï¿½hle.\nDu betrittst sie...");
 		resetButtons();
 		setButtons(continueDialog);
 	}
 
 	private void quest() {
-		position = "Apfelbäume";
+		position = "Apfelbï¿½ume";
 		mainTextArea.setText(
-				"Frank: Also gut. Suche mir einen\ngoldenen Apfel.\nSie hängen wie ganz normale Äpfel\nan den Äpfelbäumen hier,\nnur seltener.");
+				"Frank: Also gut. Suche mir einen\ngoldenen Apfel.\nSie hï¿½ngen wie ganz normale ï¿½pfel\nan den ï¿½pfelbï¿½umen hier,\nnur seltener.");
 		resetButtons();
 		setButtons(baeume);
 	}
 
 	private void normalerApfel() {
-		position = "Apfelbäume";
+		position = "Apfelbï¿½ume";
 		mainTextArea.setText("Leider nur ein normaler Apfel!");
 		resetButtons();
 		setButtons(baeume);
@@ -306,16 +304,16 @@ public class Game implements ActionListener, KeyListener {
 	}
 
 	private void questAbgeschlossen() {
-		position = "Schwertübergabe";
+		position = "Schwertï¿½bergabe";
 		mainTextArea.setText("Frank: Perfekt!\nGenau was ich gebraucht habe!\nHier, dein Schwert.");
 		hasSword = true;
 		resetButtons();
 		setButtons(continueDialog);
 	}
 
-	private void höhle() {
-		position = "Höhle";
-		mainTextArea.setText("Du bist in der Höhle...\nDu erblickst ein...");
+	private void hoehle() {
+		position = "Hï¿½hle";
+		mainTextArea.setText("Du bist in der Hï¿½hle...\nDu erblickst ein...");
 		resetButtons();
 		setButtons(buttonNames);
 	}
@@ -365,7 +363,7 @@ public class Game implements ActionListener, KeyListener {
 					break;
 				}
 				break;
-			case "Apfelbäume":
+			case "Apfelbï¿½ume":
 				switch (choice) {
 				case "btn0": // Apfelbaum 1
 					normalerApfel();
@@ -396,20 +394,20 @@ public class Game implements ActionListener, KeyListener {
 				}
 				break;
 
-			case "Schwertübergabe":
+			case "Schwertï¿½bergabe":
 				switch (choice) {
 				case "btn0": // >
-					höhle();
+					hoehle();
 					break;
 				default:
 					System.out.println("[Error]");
 					break;
 				}
 				break;
-			case "EingangHöhle":
+			case "EingangHï¿½hle":
 				switch (choice) {
 				case "btn0": // >
-					höhle();
+					hoehle();
 					break;
 				default:
 					System.out.println("[Error]");
@@ -441,7 +439,7 @@ public class Game implements ActionListener, KeyListener {
 	// Hilfsmethoden
 
 	/**
-	 * Setzt die Textarea, das Label und die Buttons zurück
+	 * Setzt die Textarea, das Label und die Buttons zurï¿½ck
 	 */
 
 	private void clear() {
@@ -453,9 +451,7 @@ public class Game implements ActionListener, KeyListener {
 	}
 
 	/**
-	 * Setzt den Text für x Buttons, ist der Text ein leerer String wird der Button an dieser Stelle entfernt
-	 * 
-	 * @param String Array für maximal 4 Buttons
+	 * Setzt den Text fï¿½r x Buttons, ist der Text ein leerer String wird der Button an dieser Stelle entfernt
 	 */
 
 	private void setButtons(String[] array) {
@@ -469,7 +465,7 @@ public class Game implements ActionListener, KeyListener {
 	}
 
 	/**
-	 * Entfernt alle Komponenten vom Button-Panel, fügt dann alle Buttons neu zum Button-Panel hinzu
+	 * Entfernt alle Komponenten vom Button-Panel, fï¿½gt dann alle Buttons neu zum Button-Panel hinzu
 	 */
 
 	private void resetButtons() {
@@ -495,7 +491,7 @@ public class Game implements ActionListener, KeyListener {
 	}
 
 	/**
-	 * Gibt die Position von einem String in einem Array zurück
+	 * Gibt die Position von einem String in einem Array zurï¿½ck
 	 * 
 	 * @param key
 	 * @param array
