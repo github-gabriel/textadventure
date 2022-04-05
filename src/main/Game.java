@@ -254,43 +254,43 @@ public class Game implements ActionListener, KeyListener {
 	private void wald() {
 		position = "Wald";
 		mainTextArea.setText(
-				"Es ist ein sonniger Samstag und\ndu spazierst in einem Wald...\nDu siehst ein Haus...\nM�chtest du es betreten?");
+				"Es ist ein sonniger Samstag und\ndu spazierst in einem Wald...\nDu siehst ein Haus...\nMöchtest du es betreten?");
 		setButtons(ja_nein);
 	}
 
 	private void hausBetreten() {
 		position = "Haus";
 		mainTextArea.setText(
-				"Frank: Willkommen Fremder!\nH�ttest du gerne ein Schwert?\nDu m�sstest auch nur eine\nKleinigkeit f�r mich erledigen");
+				"Frank: Willkommen Fremder!\nHättest du gerne ein Schwert?\nDu mösstest auch nur eine\nKleinigkeit für mich erledigen");
 		resetButtons();
 		setButtons(ja_nein);
 	}
 
 	private void amHausVorbeigehen() {
-		position = "EingangH�hle";
+		position = "EingangHöhle";
 		mainTextArea.setText(
-				"Du gehst am Haus vorbei...\nDabei st��t du auf eine H�hle.\nDu fragst dich was in der H�hle ist und betrittst sie");
+				"Du gehst am Haus vorbei...\nDabei stößt du auf eine Höhle.\nDu fragst dich was in der Höhle ist und betrittst sie");
 		resetButtons();
 		setButtons(continueDialog);
 	}
 
 	private void hausVerlassen() {
 		position = "EingangH�hle";
-		mainTextArea.setText("Du verl�sst das Haus.\nVor dir siehst du eine H�hle.\nDu betrittst sie...");
+		mainTextArea.setText("Du verlässt das Haus.\nVor dir siehst du eine Höhle.\nDu betrittst sie...");
 		resetButtons();
 		setButtons(continueDialog);
 	}
 
 	private void quest() {
-		position = "Apfelb�ume";
+		position = "Apfelbäume";
 		mainTextArea.setText(
-				"Frank: Also gut. Suche mir einen\ngoldenen Apfel.\nSie h�ngen wie ganz normale �pfel\nan den �pfelb�umen hier,\nnur seltener.");
+				"Frank: Also gut. Suche mir einen\ngoldenen Apfel.\nSie hängen wie ganz normale Äpfel\nan den Apfelbäumen hier,\nnur seltener.");
 		resetButtons();
 		setButtons(baeume);
 	}
 
 	private void normalerApfel() {
-		position = "Apfelb�ume";
+		position = "Apfelbäume";
 		mainTextArea.setText("Leider nur ein normaler Apfel!");
 		resetButtons();
 		setButtons(baeume);
@@ -304,7 +304,7 @@ public class Game implements ActionListener, KeyListener {
 	}
 
 	private void questAbgeschlossen() {
-		position = "Schwert�bergabe";
+		position = "Schwertübergabe";
 		mainTextArea.setText("Frank: Perfekt!\nGenau was ich gebraucht habe!\nHier, dein Schwert.");
 		hasSword = true;
 		resetButtons();
@@ -312,8 +312,8 @@ public class Game implements ActionListener, KeyListener {
 	}
 
 	private void hoehle() {
-		position = "H�hle";
-		mainTextArea.setText("Du bist in der H�hle...\nDu erblickst ein...");
+		position = "Höhle";
+		mainTextArea.setText("Du bist in der Höhle...\nDu erblickst ein...");
 		resetButtons();
 		setButtons(buttonNames);
 	}
@@ -363,7 +363,7 @@ public class Game implements ActionListener, KeyListener {
 					break;
 				}
 				break;
-			case "Apfelb�ume":
+			case "Apfelbäume":
 				switch (choice) {
 				case "btn0": // Apfelbaum 1
 					normalerApfel();
@@ -394,7 +394,7 @@ public class Game implements ActionListener, KeyListener {
 				}
 				break;
 
-			case "Schwert�bergabe":
+			case "Schwertübergabe":
 				switch (choice) {
 				case "btn0": // >
 					hoehle();
@@ -404,12 +404,11 @@ public class Game implements ActionListener, KeyListener {
 					break;
 				}
 				break;
-			case "EingangH�hle":
-				switch (choice) {
-				case "btn0": // >
+			case "EingangHöhle":
+				if(choice == "btn0"){
 					hoehle();
 					break;
-				default:
+				}else {
 					System.out.println("[Error]");
 					break;
 				}
